@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+.first {
+  max-width: 100%;
+  background-image: url('assets/images/image1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  background-position: center;
+  border-radius: 15px;
+}
+
+.second {
+  max-width: 100%;
+  background-image: url('assets/images/image2.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  background-size: contain;
+  border-radius: 15px;
+}
+
+.third {
+  max-width: 100%;
+  background-image: url('assets/images/image3.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  border-radius: 15px;
+}
+
+
+.ui-state-default {
+  background-color: var(--bs-primary);
+  color: var(--bs-white);
+
+}
+
+.ui-icon {
+  display: none;
+}
+
+.ui-widget-content {
+  border: none;
+}
+
+.hvr-bounce-to-left:before {
+  background: #7c935b;
+  border-radius: 6px;
+}
+
+.btn-primary.hvr-bounce-to-left:hover {
+  background: transparent;
+  border-color: transparent;
+}
+
+
+
