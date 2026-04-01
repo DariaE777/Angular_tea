@@ -1,0 +1,13 @@
+<div class="card h-100 d-flex flex-column">
+    <a class="test-popup-link">
+        <img src="{{product.image}}" class="card-img-top w-50"
+             alt="Детокс чай лайм">
+    </a>
+    <div class="card-body text-start">
+        <h5 class="card-title fw-bold text-center">{{product.title}}</h5>
+        <p class="card-text description-fixed">{{product.description }}</p>
+        <p class="card-price fw-bold text-center">{{product.price}} р.</p>
+        <a class="btn btn-primary p-2 hvr-round-corners text-center d-block mx-auto" [routerLink]="['/product', product.id]">Подробнее</a>
+
+    </div>
+</div>

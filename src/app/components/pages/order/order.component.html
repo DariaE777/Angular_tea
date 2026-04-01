@@ -1,0 +1,107 @@
+<main>
+  <div class="container">
+    <div class="row">
+  <div class="col-lg-6 col-sm-8 col-10 mx-auto" id="addBlock">
+    <form class="row g-3 pb-5 mt-4" id="form" *ngIf="!isOrderSuccess" [formGroup]="orderForm" (ngSubmit)="submitOrder()">
+      <div class="h3 fw-bold mb-5 mt-4 text-center">Сделать
+        заказ
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <label for="product" class="form-label">Товар</label>
+        <input type="text" class="form-control" id="product" style="border-color: var(--bs-gray-400)" formControlName="product">
+        <div class="text-danger" *ngIf="orderForm.get('product')?.errors?.['required'] && (orderForm.get('product')?.touched || orderForm.get('product')?.dirty)">
+          Product is required.
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <label for="phone" class="form-label">Телефон</label>
+        <input type="text" class="form-control" id="phone" style="border-color: var(--bs-gray-400);" formControlName="phone">
+        <div *ngIf="orderForm.get('phone')?.invalid && (orderForm.get('phone')?.touched || orderForm.get('phone')?.dirty)">
+          <div class="text-danger" *ngIf="orderForm.get('phone')?.errors?.['required']">
+            Number is required.
+          </div>
+          <div class="text-danger"
+               *ngIf="orderForm.get('phone')?.errors?.['pattern']">
+            The phone must contain 11 numbers.
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <label for="name" class="form-label">Имя</label>
+        <input type="text" class="form-control" id="name" style="border-color: var(--bs-gray-400);" formControlName="name">
+        <div *ngIf="orderForm.get('name')?.invalid && (orderForm.get('name')?.touched || orderForm.get('name')?.dirty)">
+        <div class="text-danger" *ngIf="orderForm.get('name')?.errors?.['required']">
+          Name is required.
+        </div>
+        <div class="text-danger"
+             *ngIf="orderForm.get('name')?.errors?.['pattern']">
+          Only letters can be used.
+        </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <label for="surname" class="form-label">Фамилия</label>
+        <input type="text" class="form-control" id="surname" style="border-color: var(--bs-gray-400);" formControlName="surname">
+        <div *ngIf="orderForm.get('surname')?.invalid && (orderForm.get('surname')?.touched || orderForm.get('surname')?.dirty)">
+          <div class="text-danger" *ngIf="orderForm.get('surname')?.errors?.['required']">
+            Surname is required.
+          </div>
+          <div class="text-danger"
+               *ngIf="orderForm.get('surname')?.errors?.['pattern']">
+            Only letters can be used.
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-lg-6">
+        <label for="country" class="form-label">Страна</label>
+        <input type="text" class="form-control" id="country" style="border-color: var(--bs-gray-400);" formControlName="country">
+        <div *ngIf="orderForm.get('country')?.invalid && (orderForm.get('country')?.touched || orderForm.get('country')?.dirty)">
+          <div class="text-danger" *ngIf="orderForm.get('country')?.errors?.['required']">
+            Сountry name is required.
+          </div>
+          <div class="text-danger"
+               *ngIf="orderForm.get('country')?.errors?.['pattern']">
+            Only letters can be used.
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-6">
+        <label for="zip" class="form-label">Индекс</label>
+        <input type="text" class="form-control" id="zip" style="border-color: var(--bs-gray-400);" formControlName="zip">
+        <div class="text-danger" *ngIf="orderForm.get('zip')?.errors?.['required'] && (orderForm.get('zip')?.touched || orderForm.get('zip')?.dirty)">
+          Zip code is required.
+        </div>
+      </div>
+      <div class="col-12 mb-2">
+        <label for="address" class="form-label">Адрес</label>
+        <input type="text" class="form-control" id="address" style="border-color: var(--bs-gray-400);" formControlName="address">
+        <div *ngIf="orderForm.get('address')?.invalid && (orderForm.get('address')?.touched || orderForm.get('address')?.dirty)">
+          <div class="text-danger" *ngIf="orderForm.get('address')?.errors?.['required']">
+            Address is required.
+          </div>
+          <div class="text-danger"
+               *ngIf="orderForm.get('address')?.errors?.['pattern']">
+            Invalid character entered.
+          </div>
+        </div>
+      </div><div class="col-12 mb-2">
+        <label for="comment" class="form-label">Комментарий к заказу</label>
+        <input type="text" class="form-control" id="comment" style="border-color: var(--bs-gray-400);" formControlName="comment">
+      </div>
+      <div class="col d-sm-flex d-lg-block justify-content-sm-center text-center">
+        <button type="submit" class="btn btn-primary" style="--bs-btn-padding-x: 2.5rem;">Отправить</button>
+        <div class="text-danger"
+             *ngIf="orderErrorText">
+          Произошла ошибка. Попробуйте еще раз
+        </div>
+      </div>
+    </form>
+    <div  class="d-flex justify-content-center align-items-center vh-100 fw-bold fs-1 text-center" *ngIf="isOrderSuccess">
+      Спасибо за заказ!
+    </div>
+  </div>
+</div>
+  </div>
+</main>
