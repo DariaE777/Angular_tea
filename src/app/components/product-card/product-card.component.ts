@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {ProductType} from "../../types/product.type";
-import {HttpClient} from "@angular/common/http";
-import {CartService} from "../../services/cart-service";
+import {HttpService} from "../../services/http-service";
+
 
 @Component({
   selector: 'product-card',
@@ -11,11 +11,10 @@ import {CartService} from "../../services/cart-service";
 })
 export class ProductCardComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute, private http:HttpClient, private CartService:  CartService,
-              private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private httpService: HttpService) { }
 
   public products: ProductType[] = [];
-  public product!: ProductType;
+  public product?: ProductType;
 
 
 
@@ -23,7 +22,7 @@ export class ProductCardComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
        const productId = Number(params['id']);
-        this.http.get<ProductType[]>('https://testologia.ru/tea')
+        this.httpService.getProducts()
             .subscribe((data)=> {
               this.products = data;
               const foundProduct = this.products.find(product => product.id === productId);
@@ -35,12 +34,5 @@ export class ProductCardComponent implements OnInit {
             })
       }
     });
-
   }
-
-  addToCart(title: string) {
-      this.CartService.product = title;
-      this.router.navigate(['/order']);
-  }
-
 }

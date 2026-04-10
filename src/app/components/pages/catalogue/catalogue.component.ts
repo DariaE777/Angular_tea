@@ -13,15 +13,7 @@ export class CatalogueComponent implements OnInit {
 
   public products: ProductType[] = [];
 
-  // public scrollTo(target: HTMLElement): void {
-  //    target.scrollIntoView({behavior: "smooth"});
-  // }
-
-//   public addToCart(product:ProductType, target: HTMLElement):void {
-//   this.scrollTo(target);
-//   this.formValues.productTitle = product.title;
-// }
-  ngOnInit(): void {
+    ngOnInit(): void {
     this.http.get<ProductType[]>('https://testologia.ru/tea')
         .subscribe((data)=> {
           this.products = data;

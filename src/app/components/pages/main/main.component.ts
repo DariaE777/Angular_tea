@@ -9,17 +9,17 @@ import {Router} from "@angular/router";
 })
 export class MainComponent implements OnInit, OnDestroy {
 
-  showModal = false;
+  showModal:boolean = false;
   private timerPopup!: Subscription;
     constructor(private router: Router) {}
-  ngOnInit() {
+  ngOnInit():void {
     this.timerPopup = timer(10000).subscribe(() => {
       this.showModal = true;
     });
   }
 
 
-  ngOnDestroy() {
+  ngOnDestroy():void {
     if (this.timerPopup) {
       this.timerPopup.unsubscribe();
     }
@@ -27,7 +27,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
     goToCatalogue(): void {
         this.showModal = false;
-        this.router.navigate(['/catalogue']);
+        this.router.navigate(['/catalogue']).then();
     }
     closeModal() {
         this.showModal = false;

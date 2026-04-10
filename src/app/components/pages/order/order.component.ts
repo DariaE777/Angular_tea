@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
-import {CartService} from "../../../services/cart-service";
-import {HttpClient} from "@angular/common/http";
+import {FormBuilder,FormGroup, Validators} from "@angular/forms";
 import {OrderRequest} from "../../../types/order.request";
 import {Subscription} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
+import {HttpService} from "../../../services/http-service";
 
 
 @Component({
@@ -13,10 +13,11 @@ import {Subscription} from "rxjs";
 })
 export class OrderComponent implements OnInit, OnDestroy{
 
-  isOrderSuccess = false;
-  orderErrorText = false;
+  isOrderSuccess:boolean = false;
+  orderErrorText:boolean = false;
+    productTitle:string = '';
 
-  orderForm = this.fb.group({
+  orderForm:FormGroup = this.fb.group({
     product: [{ value: '', disabled: true }, [Validators.required]],
     phone: ['', [Validators.required, Validators.pattern('^\\+?\\d{11}$')]],
     name: ['', [Validators.required, Validators.pattern('^[a-zA-Zа-яА-Я ]+$')]],
@@ -28,12 +29,16 @@ export class OrderComponent implements OnInit, OnDestroy{
 
   });
 
- constructor(private fb: FormBuilder, private cartService: CartService, private http: HttpClient) { }
+ constructor(private fb: FormBuilder, private route: ActivatedRoute, private httpService: HttpService) { }
   private subscriptionOrder: Subscription | null =  null;
-    ngOnInit() {
-      this.orderForm.get('product')?.setValue(this.cartService.product);
+    ngOnInit():void {
+        this.route.queryParamMap.subscribe(params => {
+            this.productTitle = params.get('title') || '';
+
+        });
+      this.orderForm.get('product')?.setValue(this.productTitle);
     }
-    ngOnDestroy() {
+    ngOnDestroy():void {
       this.subscriptionOrder?.unsubscribe();
     }
 
@@ -56,7 +61,7 @@ export class OrderComponent implements OnInit, OnDestroy{
             comment: value.comment ?? ''
         };
 
-             this.subscriptionOrder = this.makeOrder(data).subscribe({
+             this.subscriptionOrder = this.httpService.makeOrder(data).subscribe({
                next: (response) => {
 
                 if (response.success && !response.message) {
@@ -68,14 +73,10 @@ export class OrderComponent implements OnInit, OnDestroy{
                   this.orderErrorText = true;
                 }
             },
-                 error: () => {
+                 error: ():void => {
                      this.isOrderSuccess = false;
                      this.orderErrorText = true;
                  }
             });
     }
-    makeOrder(data: OrderRequest) {
-
-   return this.http.post<{success: boolean, message?: string}>('https://testologia.ru/order-tea', data);
-}
 }

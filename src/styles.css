@@ -1,6 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  }
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+router-outlet {
+  flex: 1 0 auto;
+}
+
+
 .first {
   max-width: 100%;
   background-image: url('assets/images/image1.png');
@@ -54,10 +74,14 @@
   border-radius: 6px;
 }
 
-.btn-primary.hvr-bounce-to-left:hover {
-  background: transparent;
-  border-color: transparent;
+.btn-wide {
+  padding-left: 2.8rem !important;
+
+  padding-right: 2.8rem !important;
 }
 
+.btn-middle {
+  --bs-btn-padding-x: 2.5rem;
+}
 
 

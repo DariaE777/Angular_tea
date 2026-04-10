@@ -1,26 +1,15 @@
-<!--<div class="card d-flex flex-column" >-->
-<!--        <a class="test-popup-link">-->
-<!--        <img src="{{product.image}}" class="card-img-top">-->
-<!--    </a>-->
-<!--    <div class="card-body text-start">-->
-<!--        <h5 class="card-title fw-bold text-center">{{product.title}}</h5>-->
-<!--        <p class="card-text description-fixed">{{product.description }}</p>-->
-<!--        <p class="card-price fw-bold text-center">{{product.price}} р.</p>-->
-<!--        <a class="btn btn-primary p-2 hvr-round-corners text-center d-block mx-auto" [routerLink]="['/product', product.id]">Подробнее</a>-->
-
-<!--    </div>-->
-<!--</div>-->
 
 <div class="d-flex justify-content-center align-items-center min-vh-100">
     <div class="card" style="max-width: 700px; width: 100%">
         <a class="test-popup-link text-center">
-            <img src="{{product.image}}" class="card-img-top w-25" alt="{{product.title}}">
+            <img src="{{product?.image}}" class="card-img-top w-25" alt="{{product?.title}}">
         </a>
         <div class="card-body text-start">
-            <h5 class="card-title fw-bold text-center">{{product.title}}</h5>
-            <p class="card-text description-fixed">{{product.description}}</p>
-            <p class="card-price fw-bold text-center">{{product.price}} р.</p>
-            <a class="btn btn-primary p-2 hvr-round-corners text-center d-block mx-auto w-50" (click)="addToCart(product.title)">
+            <h5 class="card-title fw-bold text-center">{{product?.title}}</h5>
+            <p class="card-text description-fixed">{{product?.description}}</p>
+            <p class="card-price fw-bold text-center">{{product?.price}} р.</p>
+            <a class="btn btn-primary p-2 hvr-round-corners text-center d-block mx-auto w-50"  [routerLink]="['/order']"
+               [queryParams]="{title: product?.title }">
                 Купить
             </a>
         </div>
