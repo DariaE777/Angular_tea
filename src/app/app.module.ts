@@ -2,35 +2,29 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponent } from './components/pages/main/main.component';
-import { CatalogueComponent } from './components/pages/catalogue/catalogue.component';
-import { HeaderComponent } from './components/common/header/header.component';
-import { FooterComponent } from './components/common/footer/footer.component';
-import { OrderComponent } from './components/pages/order/order.component';
 import {HttpClientModule} from "@angular/common/http";
-import { ProductComponent } from './components/product/product.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {SharedModule} from "./shared/shared.module";
+import {ProductsModule} from "./views/products/products.module";
+import {MainModule} from "./views/main/main.module";
+import {CatalogueModule} from "./views/catalogue/catalogue.module";
+import {OrderModule} from "./views/order/order.module";
 declare var $: any;
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MainComponent,
-    CatalogueComponent,
-    HeaderComponent,
-    FooterComponent,
-    OrderComponent,
-    ProductComponent,
-    ProductCardComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    MainModule,
+    CatalogueModule,
+    OrderModule,
     HttpClientModule,
-    ReactiveFormsModule
-
-
+    NgbModule,
+    SharedModule,
+    ProductsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

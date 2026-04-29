@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ProductType} from "../../types/product.type";
+import {ProductType} from "../../../types/product.type";
+
 
 
 @Component({

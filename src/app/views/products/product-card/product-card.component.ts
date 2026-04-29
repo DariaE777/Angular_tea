@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {ProductType} from "../../types/product.type";
-import {HttpService} from "../../services/http-service";
+import {HttpService} from "../../../shared/services/http-service";
+import {ProductType} from "../../../types/product.type";
+
 
 
 @Component({
